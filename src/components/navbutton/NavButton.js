@@ -6,14 +6,6 @@ class NavButton extends Component {
         super(props);
 
         this.elRef = React.createRef();
-
-        this.flipActive = this.flipActive.bind(this);
-    }
-
-    flipActive() {
-        this.setState(prevState => {
-            return { active: !prevState.active }
-        });
     }
 
     render() {

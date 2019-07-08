@@ -1,0 +1,53 @@
+[
+    {
+        "img": "../../img/biz.jpg",
+        "title": "biz_network",
+        "desc": "I co-founded biz_classic and biz_private with my partner and we are now the largest and #1 ranked ARK delegate with over $2 million in ARK staking with us right now. I built the back and front ends of our website, which allows voters to manage and keep track of their payouts and faucet winnings. I also built out the delegates' infrastructure and worked with a small team to scale up our nodes and maximize uptime.",
+        "link": {
+            "url": "https://classicdelegate.biz",
+            "type": "generic"
+        }
+    },
+    {
+        "img": "../../img/nano.png",
+        "title": "DPoS-Nano",
+        "desc": "DPoS-Nano or ARK-Nano is a lightweigh in-memory implementation of <a href='https://github.com/arkecosystem/core'>Ark Core</a>. It stores the last 100 blocks (configurable) in memory and can peer with full ARK nodes. Nano features a plugin system and is so lightweight you can spin up hundreds of nodes at once on $3 Google Cloud instances -- which we've done."
+    },
+    {
+        "img": "../../img/lockit.jpg",
+        "title": "Lockit - Encrypted Notepad",
+        "desc": "Lockit is a simple notepad app with AES-256 encryption.",
+        "link": {
+            "url": "https://play.google.com/store/apps/details?id=com.eli.lockit",
+            "type": "googlePlay"
+        }
+    },
+    {
+        "img": "../../img/homeswipe.jpg",
+        "title": "Homeswipe (Formerly Skylight)",
+        "desc": "Homeswipe was a mobile app that provided a Tinder-like UI for apartment hunters. Swipe right if you like what you see and you'll be able to chat with the real estate agent. I worked for Homeswipe as a contractor and built the Android version of their app.",
+        "link": {
+            "url": "https://www.businessinsider.com/high-school-dropout-scores-500000-to-build-tinder-for-real-estate-2015-5",
+            "type": "generic"
+        }
+    },
+    {
+        "img": "../../img/cam.png",
+        "title": "Cam Fortress",
+        "desc": "Cam Fortress is a fun little app that overlays the Team Fortress 2 HUD over your phone's camera feed. Choose from any of the nine TF2 classes and have fun! Controls are easy, just tap the screen to attack!",
+        "link": {
+            "url": "https://play.google.com/store/apps/details?id=com.lambdai.camfortress&hl=en_US",
+            "type": "googlePlay"
+        }
+    },
+    {
+        "img": "../../img/polyapp.png",
+        "title": "NYU-Poly Mobile App",
+        "desc": "Android app for NYU-Poly. Useful for Poly students who want to keep up to date with the latest Poly news and events. The app also features a built in university directory search, campus map, campus directions, and emergency speed dial."
+    },
+    {
+        "img": "../../img/bths.png",
+        "title": "Textbook Inventory Management System",
+        "desc": "Made this during my senior year for Brooklyn Technical High School. Before, the school administration was using a bunch of scattered Excel files to keep track of which textbooks get assigned to which students. This was clumsy since each book distribution station had its own Excel file. This new system centralizes the entire database while also having nifty features such as report generation for missing books and student bio retrieval. This system was also deployed at A. Philip Randolph High School."
+    }
+]

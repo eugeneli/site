@@ -1,11 +1,17 @@
 .navButton {
     background: #000;
     color: #fff;
-    line-height: 30px;
-    padding: 7px 20px 7px 20px;
     cursor: pointer;
     margin-right: 10px;
+    line-height: 20px;
+    padding: 5px 10px 5px 10px;
 }
+@media only screen and (min-width : 768px) {
+    .navButton {
+        padding: 7px 15px 7px 15px;
+    }
+}
+
 .navButton.active,
 .navButton:hover {
     color: #3cb0fd;

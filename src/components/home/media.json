@@ -1,0 +1,47 @@
+[
+    {
+        "img": "https://pbs.twimg.com/media/DdL05B8WAAAlfP9.jpg:large",
+        "title": "ARK Faucet @ Consensus 2018 - biz_classic",
+        "desc": "People are loving our real $ARK faucet at #Consensus2018",
+        "link": {
+            "url": "https://twitter.com/biz_classic/status/996127773788958720",
+            "type": "twitter"
+        }
+    },
+    {
+        "img": "https://pbs.twimg.com/media/DdMMOPSXUAE4nV9.jpg:large",
+        "title": "Decentralizing Coin Swaps @ Consensus 2018 - biz_classic",
+        "desc": "$ARK CTO Francois-Xavier Thoorens having a chat with biz_classic co-founder about decentralizing coin swaps.",
+        "link": {
+            "url": "https://twitter.com/biz_classic/status/996153400940167169",
+            "type": "twitter"
+        }
+    },
+    {
+        "img": "https://pbs.twimg.com/media/Dc9pIu7U0AIEiR8.jpg:large",
+        "title": "NYC Meetup - biz_classic",
+        "desc": "We had such an amazing turnout. Over 120 people showed up to the first $ARK NYC meetup! Thanks @Delegate_Del for setting this up with us and all the other delegates that showed up in person and on stream. Catch us on the next episode: Consensus Edition. 😉",
+        "link": {
+            "url": "https://twitter.com/biz_classic/status/995130206905077760",
+            "type": "twitter"
+        }
+    },
+    {
+        "img": "../../img/nycpresentation.jpg",
+        "title": "NYC Meetup Presentation - biz_classic",
+        "desc": "General overview presentation of ARK and DPoS at the NYC Meetup.",
+        "link": {
+            "url": "https://www.youtube.com/watch?v=6pyHwul8Qzk",
+            "type": "generic"
+        }
+    },
+    {
+        "img": "../../img/kotaku.png",
+        "title": "See Life as a Team Fortress 2 Character with this Augmented Reality Smartphone App",
+        "desc": "Cam Fortress doesn't really \"do\" anything, but it does let you pretend to sneak up on someone on the subway platform with your Spy switchblade drawn, or carry Pyro's flamethrower to a gas station. Developed and launched on Google Play for Android phones, Cam Fortress launched last week, and is free to download...",
+        "link": {
+            "url": "https://kotaku.com/see-life-as-a-team-fortress-2-character-with-this-augme-5918937",
+            "type": "generic"
+        }
+    }
+]

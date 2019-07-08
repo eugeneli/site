@@ -1,0 +1,47 @@
+[
+    {
+        "img": "../../img/tbw.png",
+        "title": "ARK True Block Weight",
+        "desc": "My delegate partner and I introduced and implemented the first True Block Weight (TBW) payout system in ARK. The main purpose of TBW is to defend against pool hoppers and is now considered standard practice for delegates. You can read the whitepaper <a href='https://www.scribd.com/document/416211820/True-Block-Weight'>here</a>.",
+        "link": {
+            "url": "https://github.com/eugeneli/Ark-TrueBlockWeight",
+            "type": "github"
+        }
+    },
+    {
+        "img": "../../img/faucet.jpg",
+        "title": "ARK Faucet",
+        "desc": "I implemented and open sourced the first ARK faucet. It's an Express app with easily configurable settings for anybody to deploy their own ARK faucet.",
+        "link": {
+            "url": "https://github.com/eugeneli/Ark-Faucet",
+            "type": "github"
+        }
+    },
+    {
+        "img": "../../img/brute.jpg",
+        "title": "ARK Bruteforcer",
+        "desc": "Every few months, somebody would make a Reddit post asking for help because they lost a few words in their passphrase. This bruteforcer iterates through the BIP-39 dictionary and tries to find the missing words of the passphrase that corresponds to a their ARK address. It's not feasible to bruteforce more than 3 words, especially not this bruteforcer which is written in JS and singlethreaded. I have a multithreaded Java version of this but it's not currently open source.",
+        "link": {
+            "url": "https://github.com/eugeneli/Ark-Bruteforcer",
+            "type": "github"
+        }
+    },
+    {
+        "img": "../../img/bot.png",
+        "title": "Runescape Automatic Account Creator",
+        "desc": "This is a simple Java application that wraps around TopBot (defunct) and automates the process of signing up a fresh Runescape 2007 account and running through Tutorial Island. It's meant to bootstrap the aspiring botter's ability to spin up new accounts as their old ones get banned. Jagex has since added a captcha to their signup process in an attempt to mitigate this.",
+        "link": {
+            "url": "https://github.com/eugeneli/TB_AutomaticAccountCreator",
+            "type": "github"
+        }
+    },
+    {
+        "img": "../../img/ping.png",
+        "title": "Ping",
+        "desc": "Ping was a location-based social media mobile app. I got the idea from RTS games like Starcraft and DOTA where players can \"ping\" the map to draw their teammates' attention to a particular area of the game world. In Ping, users could add short-lived pings to the map and leave a note for others in the area, similar to Dark Souls (again, more video game inspiration :P). Notes ranged from simple greetings to events to alerts that something was happening at a particular place. Users could up and downvote pings based on how useful they are. We planned on monetizing this by letting local businesses send out longer lasting pings at their address to advertise deals and discounts.",
+        "link": {
+            "url": "https://github.com/eugeneli/Ping2",
+            "type": "github"
+        }
+    }
+]

@@ -1,5 +1,9 @@
+#cards {
+    display: flex;
+    flex-direction: column;
+}
+
 .semidivider {
     width: 80%;
-    float:left;
-    margin: 15px 0 15px;
+    margin: 15px 0 10px;
 }

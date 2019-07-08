@@ -1,0 +1,90 @@
+#header {
+    margin-top: 3%;
+    text-align: center;
+}
+
+#intro {
+    display: flex;
+}
+
+.headerText {
+    margin-left: 10px;
+    font-size: 30pt;
+    text-align: left;
+}
+@media only screen and (min-width : 768px) {
+    .headerText {
+        font-size: 50pt;
+    }
+}
+
+#selfie {
+    border-radius: 7%;
+    width: 100px;
+    height: auto;
+}
+@media only screen and (min-width : 768px) {
+    #selfie {
+        width: 180px;
+    }
+}
+
+#navBar {
+    display: flex;
+    justify-content: flex-start;
+}
+  
+.blinker {
+    color: #3cb0fd;
+    font-weight: 100;
+    -webkit-animation: 1s blink step-end infinite;
+    -moz-animation: 1s blink step-end infinite;
+    -ms-animation: 1s blink step-end infinite;
+    -o-animation: 1s blink step-end infinite;
+    animation: 1s blink step-end infinite;
+}
+
+@keyframes blink {
+    from, to {
+        color: transparent;
+    }
+    50% {
+        color: #3cb0fd;
+    }
+}
+
+@-moz-keyframes blink {
+    from, to {
+        color: transparent;
+    }
+    50% {
+        color: #3cb0fd;
+    }
+}
+
+@-webkit-keyframes blink {
+    from, to {
+        color: transparent;
+    }
+    50% {
+        color: #3cb0fd;
+    }
+}
+
+@-ms-keyframes blink {
+    from, to {
+        color: transparent;
+    }
+    50% {
+    color: #3cb0fd;
+    }
+}
+
+@-o-keyframes blink {
+    from, to {
+        color: transparent;
+    }
+    50% {
+        color: #3cb0fd;
+    }
+}

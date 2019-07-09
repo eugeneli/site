@@ -1,0 +1,43 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>HATERS GON' HATE</title>
+		<style type="text/css">
+		html, body {; margin:0; padding:0;}
+		#bg {; top:0; left:0; ; ;}
+		</style>
+	</head>
+	<body>
+	<marquee direction="up" style="font-weight:bold;font-size:80px;z-index:1000;position:absolute;width:100%;color:white">
+	MATERS GONNA MATE
+	</marquee>
+	<marquee scrollamount="20" style="font-weight:bold;font-size:80px;z-index:1000;position:absolute;width:100%;color:white">
+	BATERS GONNA BATE
+	</marquee>
+	<marquee id="derp" behavior="alternate" style="font-weight:bold;font-size:100px;z-index:1000;position:absolute;width:100%;color:white;margin-top:400px;">
+	HATERS GONNA HATE
+	</marquee>
+		<div id="bg">
+			<img src="/haters/haters.gif" width="100%" height="100%">
+		</div>
+		<script>
+		function red()
+		{
+			document.getElementById("derp").style.color="red";
+		}
+		
+		function white()
+		{
+			document.getElementById("derp").style.color="white";
+		}
+		
+		function d()
+		{
+			var r=setInterval("red()",200);
+			var w=setInterval("white()",300);
+		}
+		
+			d();
+		</script>
+	</body>
+</html>	

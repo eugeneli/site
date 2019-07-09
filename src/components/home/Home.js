@@ -18,7 +18,6 @@ class Home extends Component {
         };
 
         this.navigate = this.navigate.bind(this);
-        this.navigate(hash);
     }
 
     getHash() {
@@ -53,13 +52,13 @@ class Home extends Component {
 
         let cards = [];
 
-        if(!page || page == "public")
+        if(!page || page === "public")
             cards = Public.map((data, idx) => <Card key={idx} item={data}/>);
-        else if(page == "private")
+        else if(page === "private")
             cards = Private.map((data, idx) => <Card key={idx} item={data}/>);
-        else if(page == "media")
+        else if(page === "media")
             cards = Media.map((data, idx) => <Card key={idx} item={data}/>);
-        else if(page == "contact")
+        else if(page === "contact")
             cards = Contact.map((data, idx) => <Card key={idx} item={data}/>);
 
         return cards;

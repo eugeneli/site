@@ -1,6 +1,6 @@
 [
     {
-        "img": "https://pbs.twimg.com/media/DdL05B8WAAAlfP9.jpg:large",
+        "img": "../../img/consensusFaucet.jpg",
         "title": "ARK Faucet @ Consensus 2018 - biz_classic",
         "desc": "People are loving our real $ARK faucet at #Consensus2018",
         "link": {
@@ -9,7 +9,7 @@
         }
     },
     {
-        "img": "https://pbs.twimg.com/media/DdMMOPSXUAE4nV9.jpg:large",
+        "img": "../../img/consensustalk.jpg",
         "title": "Decentralizing Coin Swaps @ Consensus 2018 - biz_classic",
         "desc": "$ARK CTO Francois-Xavier Thoorens having a chat with biz_classic co-founder about decentralizing coin swaps.",
         "link": {
@@ -18,7 +18,7 @@
         }
     },
     {
-        "img": "https://pbs.twimg.com/media/Dc9pIu7U0AIEiR8.jpg:large",
+        "img": "../../img/nycmeetup.jpg",
         "title": "NYC Meetup - biz_classic",
         "desc": "We had such an amazing turnout. Over 120 people showed up to the first $ARK NYC meetup! Thanks @Delegate_Del for setting this up with us and all the other delegates that showed up in person and on stream. Catch us on the next episode: Consensus Edition. 😉",
         "link": {

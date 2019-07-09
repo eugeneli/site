@@ -17,12 +17,12 @@ class Card extends Component {
     renderImg(ignore) {
         if(!ignore && this.props.item.link)
             return (
-                <a class="" href={this.props.item.link.url}>
-                    <img className="cardImg" src={this.props.item.img} />
+                <a href={this.props.item.link.url}>
+                    <img className="cardImg" src={this.props.item.img} alt="Card"/>
                 </a>
             );
         else
-            return <img className="cardImg" src={this.props.item.img} />;
+            return <img className="cardImg" src={this.props.item.img} alt="Card"/>;
     }
 
     renderLink() {
@@ -30,9 +30,9 @@ class Card extends Component {
         {
             const linkType = this.props.item.link.type;
             return (
-                <a class="link" href={this.props.item.link.url}>
+                <a className="link" href={this.props.item.link.url}>
                     <span className="tooltip">{this.typeTooltips[linkType]}</span>
-                    <img src={`../../img/${linkType}.png`} />
+                    <img src={`../../img/${linkType}.png`} alt="Card"/>
                 </a>
             );
         }

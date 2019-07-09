@@ -9,7 +9,6 @@ class NavButton extends Component {
     }
 
     render() {
-        console.log(this.props.item)
         return (
             <span className={this.props.item.active ? "navButton active" : "navButton"} ref={this.elRef}>
                 {this.props.item.text}

@@ -6,7 +6,7 @@ class Header extends Component {
         return (
             <div id="header">
                 <div id="intro">
-                    <img id="selfie" src="img/pic.jpg" alt="It's me"/>
+                    <img id="selfie" src="../../img/pic2.jpg" alt="It's me"/>
                     <div className="headerText">
                         hello
                         <br />

@@ -11,7 +11,7 @@
     {
         "img": "../../img/nano.png",
         "title": "DPoS-Nano",
-        "desc": "DPoS-Nano or ARK-Nano is a lightweigh in-memory implementation of <a href='https://github.com/arkecosystem/core'>Ark Core</a>. It stores the last 100 blocks (configurable) in memory and can peer with full ARK nodes. Nano features a plugin system and is so lightweight you can spin up hundreds of nodes at once on $3 Google Cloud instances -- which we've done."
+        "desc": "DPoS-Nano or ARK-Nano is a lightweight in-memory implementation of <a href='https://github.com/arkecosystem/core'>Ark Core</a>. It stores the last 100 blocks (configurable) in memory and can peer with full ARK nodes. Nano features a plugin system and is so lightweight you can spin up hundreds of nodes at once on $3 Google Cloud instances -- which we've done."
     },
     {
         "img": "../../img/lockit.jpg",

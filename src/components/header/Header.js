@@ -23,10 +23,10 @@ class Header extends Component {
                 </div>
                 
                 <div className="sideFloaters">
-                    <Floater color="red" left="75%" top="15%"/>
-                    <Floater color="red" left="78%" top="35%"/>
+                    <Floater color="red" left="75%" top="3%"/>
+                    <Floater color="red" left="78%" top="22%"/>
                     <Floater color="red" left="85%" top="7%"/>
-                    <Floater color="red" left="90%" top="40%"/>
+                    <Floater color="red" left="90%" top="19%"/>
                 </div>
             </div>
           );

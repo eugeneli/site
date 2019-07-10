@@ -53,13 +53,13 @@ class Home extends Component {
         let cards = [];
 
         if(!page || page === "public")
-            cards = Public.map((data, idx) => <Card key={idx} item={data}/>);
+            cards = Public.map((data) => <Card key={data.title} item={data}/>);
         else if(page === "private")
-            cards = Private.map((data, idx) => <Card key={idx} item={data}/>);
+            cards = Private.map((data) => <Card key={data.title} item={data}/>);
         else if(page === "media")
-            cards = Media.map((data, idx) => <Card key={idx} item={data}/>);
+            cards = Media.map((data) => <Card key={data.title} item={data}/>);
         else if(page === "contact")
-            cards = Contact.map((data, idx) => <Card key={idx} item={data}/>);
+            cards = Contact.map((data) => <Card key={data.title} item={data}/>);
 
         return cards;
     }

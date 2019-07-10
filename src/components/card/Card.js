@@ -11,7 +11,9 @@ class Card extends Component {
             "googlePlay": "View on Google Play",
             "twitter": "View on Twitter",
             "generic": "Visit link"
-        }
+        };
+
+        this.elRef = React.createRef();
     }
 
     renderImg(ignore) {
@@ -41,7 +43,7 @@ class Card extends Component {
     render() {
         const htmlParser = new Parser();
         return (
-            <div className="card">
+            <div className="card" ref={this.elRef}>
                 {this.renderImg(true)}
                 <div className="cardInfo">
                     <span className="cardTitle">

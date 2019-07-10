@@ -14,6 +14,7 @@
     margin-left: 10px;
     font-size: 30pt;
     text-align: left;
+    z-index: 2;
 }
 @media only screen and (min-width : 768px) {
     .headerText {
@@ -21,11 +22,17 @@
     }
 }
 
+.headerText span {
+    background-color: #000;
+}
+
 #selfie {
     border-radius: 7%;
     width: 100px;
     height: auto;
     align-self: center;
+
+    z-index: 2;
 }
 @media only screen and (min-width : 768px) {
     #selfie {
@@ -38,6 +45,36 @@
     display: flex;
     align-items: center;
     justify-content: center;
+
+    z-index: 2;
+}
+
+.sideFloaters {
+    display: none;
+}
+@media only screen and (min-width : 768px) {
+    .sideFloaters {
+        display: block;
+    }
+}
+
+.floater {
+    height: auto;
+    width: 30px;
+    animation: float 6s ease-in-out infinite;
+    z-index: 1;
+}
+
+@keyframes float {
+	0% {
+		transform: translatey(0px);
+	}
+	50% {
+		transform: translatey(-20px);
+	}
+	100% {
+		transform: translatey(0px);
+	}
 }
   
 .blinker {

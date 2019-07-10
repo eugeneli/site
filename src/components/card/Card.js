@@ -12,8 +12,6 @@ class Card extends Component {
             "twitter": "View on Twitter",
             "generic": "Visit link"
         };
-
-        this.elRef = React.createRef();
     }
 
     renderImg(ignore) {
@@ -43,7 +41,7 @@ class Card extends Component {
     render() {
         const htmlParser = new Parser();
         return (
-            <div className="card" ref={this.elRef}>
+            <div className="card">
                 {this.renderImg(true)}
                 <div className="cardInfo">
                     <span className="cardTitle">

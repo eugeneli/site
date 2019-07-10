@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import Floater from "./Floater";
 import "./Header.css";
 
 class Header extends Component {
@@ -8,10 +9,24 @@ class Header extends Component {
                 <div id="intro">
                     <img id="selfie" src="../../img/pic2.jpg" alt="It's me"/>
                     <div className="headerText">
-                        hello
+                        <span>hello</span> <Floater secs="6"/>
                         <br />
-                        it's eugene<span className="blinker">.</span>li
+                        <span>it's eugene<span className="blinker">.</span>li</span>
                     </div>
+                    <Floater secs="4"/>
+                </div>
+                <div className="sideFloaters">
+                    <Floater color="red" left="5%" />
+                    <Floater color="red" left="15%" top="10%"/>
+                    <Floater color="red" left="22%" top="17%"/>
+                    <Floater color="red" left="30%" top="20%"/>
+                </div>
+                
+                <div className="sideFloaters">
+                    <Floater color="red" left="75%" top="15%"/>
+                    <Floater color="red" left="78%" top="35%"/>
+                    <Floater color="red" left="85%" top="7%"/>
+                    <Floater color="red" left="90%" top="40%"/>
                 </div>
             </div>
           );

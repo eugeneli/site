@@ -2,10 +2,10 @@ import React, { Component } from "react";
 import Header from "../header/Header";
 import NavButton from "../navbutton/NavButton";
 import Card from "../card/Card";
-import Public from "./public";
-import Private from "./private";
-import Media from "./media";
-import Contact from "./contact";
+import Public from "../../res/public";
+import Private from "../../res/private";
+import Media from "../../res/media";
+import Contact from "../../res/contact";
 import "./Home.css";
 
 class Home extends Component {
@@ -70,12 +70,13 @@ class Home extends Component {
 
         return (
             <div>
-                <Header/>
-                <br />
-                <div id="navBar">
-                    {buttonComponents}
+                <div id="top">
+                    <Header/>
+                    <br />
+                    <div id="navBar">
+                        {buttonComponents}
+                    </div>
                 </div>
-                <hr className="semidivider"></hr>
                 <div id="cards">
                     {cardComponents}
                 </div>

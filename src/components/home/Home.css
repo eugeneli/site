@@ -1,9 +1,28 @@
+#top {
+    background-color: #000;
+    box-shadow: 0 4px 20px 0px rgba(0, 0, 0, 0.14), 0 7px 12px -5px rgba(33, 33, 33, 0.46);
+}
+
 #cards {
     display: flex;
     flex-direction: column;
+    align-items:center;
+    
+    width: 95%;
+    height: 100%;
+    background-color: #fff;
+    margin: auto;
+    padding: 0 5px 5px 5px;
+    box-shadow: 0 4px 20px 0px rgba(0, 0, 0, 0.14), 0 7px 12px -5px rgba(33, 33, 33, 0.46);
 }
-
-.semidivider {
-    width: 80%;
-    margin: 15px 0 10px;
+@media only screen and (min-width : 768px) {
+    #cards {
+        padding: 0 20px 30px 20px;
+    }
+}
+@media only screen and (min-width : 1000px) {
+    #cards {
+        width: 80%;
+        padding: 0 100px 30px 100px;
+    }
 }

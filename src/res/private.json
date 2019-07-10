@@ -2,7 +2,7 @@
     {
         "img": "../../img/biz.jpg",
         "title": "biz_network",
-        "desc": "I co-founded biz_classic and biz_private with my partner and we are now the largest and #1 ranked ARK delegate with over $2 million in ARK staking with us right now. I built the back and front ends of our website, which allows voters to manage and keep track of their payouts and faucet winnings. I also built out the delegates' infrastructure and worked with a small team to scale up our nodes and maximize uptime.",
+        "desc": "I co-founded biz_classic and biz_private and we are now the largest and #1 ranked ARK delegate with over $2 million in ARK staking with us right now. I built the back and front ends of our website, which allows voters to manage and keep track of their payouts and faucet winnings. I also built out the delegates' infrastructure and worked with a small team to scale up our nodes and maximize uptime.",
         "link": {
             "url": "https://classicdelegate.biz",
             "type": "generic"
@@ -25,7 +25,7 @@
     {
         "img": "../../img/homeswipe.jpg",
         "title": "Homeswipe (Formerly Skylight)",
-        "desc": "Homeswipe was a mobile app that provided a Tinder-like UI for apartment hunters. Swipe right if you like what you see and you'll be able to chat with the real estate agent. I worked for Homeswipe as a contractor and built the Android version of their app.",
+        "desc": "Homeswipe was a mobile app that provided a Tinder-like UI for apartment hunters. Swipe right if you like what you see and you'll be able to chat with the real estate agent. I worked for Homeswipe as a contractor and built the Android version of their app. Homeswipe was acquired in September 2016.",
         "link": {
             "url": "https://www.businessinsider.com/high-school-dropout-scores-500000-to-build-tinder-for-real-estate-2015-5",
             "type": "generic"

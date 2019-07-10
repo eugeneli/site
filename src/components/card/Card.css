@@ -4,25 +4,38 @@
     border-color: #d7dfe3;
     box-shadow: 0 5px 20px rgba(0,0,0,.05);
     border: 1px solid #ccc;
+
+    width: 90%;
 }
 @media only screen and (min-width : 768px) {
     .card {
         display: flex;
         align-items: flex-start;
+        width: 680px;
+    }
+}
+@media only screen and (min-width : 1000px) {
+    .card {
+        width: 900px;
     }
 }
 
 .cardImg {
     float: left;
-    max-width: 125px;
+    width: 125px;
     height: auto;
     margin-right: 5px;
 }
 @media only screen and (min-width : 768px) {
     .cardImg {
         float: none;
-        max-width: 150px;
+        width: 150px;
         margin-right: 0px;
+    }
+}
+@media only screen and (min-width : 1000px) {
+    .cardImg {
+        width: 220px;
     }
 }
 

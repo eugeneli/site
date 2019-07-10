@@ -1,10 +1,13 @@
 #header {
-    margin-top: 3%;
     text-align: center;
+    color: #fff;
+    padding-top: 50px;
 }
 
 #intro {
     display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .headerText {
@@ -26,18 +29,20 @@
 }
 @media only screen and (min-width : 768px) {
     #selfie {
-        width: 180px;
+        width: 220px;
     }
 }
 
 #navBar {
+    margin-top: 10px;
     display: flex;
-    justify-content: flex-start;
+    align-items: center;
+    justify-content: center;
 }
   
 .blinker {
     color: #3cb0fd;
-    font-weight: 100;
+    font-weight: 500;
     -webkit-animation: 1s blink step-end infinite;
     -moz-animation: 1s blink step-end infinite;
     -ms-animation: 1s blink step-end infinite;

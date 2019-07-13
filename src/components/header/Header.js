@@ -16,8 +16,8 @@ class Header extends Component {
                     <Floater secs="4"/>
                 </div>
                 <div className="sideFloaters">
-                    <Floater color="red" left="5%" />
-                    <Floater color="red" left="15%" top="10%"/>
+                    <Floater color="red" left="8%" />
+                    <Floater color="red" left="15%" top="11%"/>
                     <Floater color="red" left="22%" top="17%"/>
                     <Floater color="red" left="30%" top="20%"/>
                 </div>

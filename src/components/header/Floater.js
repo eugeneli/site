@@ -32,7 +32,7 @@ class Floater extends Component {
 
     render() {
         return (
-            <img className="floater" src={this.color} ref={this.elRef}/>
+            <img className="floater" src={this.color} ref={this.elRef} alt="box"/>
           );
     }
 }

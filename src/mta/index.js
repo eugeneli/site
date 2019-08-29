@@ -31,6 +31,9 @@ class MTA extends Component {
             const minutes = duration.minutes() > 0 ? duration.minutes() + "m" : "";
             const seconds = duration.seconds() + "s";
 
+            if(seconds < 0)
+                return "Arriving now!";
+
             return `${minutes} ${seconds}`;
         };
         const now = moment();

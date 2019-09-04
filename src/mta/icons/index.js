@@ -7,25 +7,25 @@ import six from "./6.svg";
 import sixd from "./6d.svg";
 import seven from "./7.svg";
 import sevend from "./7d.svg";
-import a from "./a.svg";
-import b from "./b.svg";
-import c from "./c.svg";
-import d from "./d.svg";
-import e from "./e.svg";
-import f from "./f.svg";
-import g from "./g.svg";
-import h from "./h.svg";
-import j from "./j.svg";
-import l from "./l.svg";
-import m from "./m.svg";
-import n from "./n.svg";
-import q from "./q.svg";
-import r from "./r.svg";
-import s from "./s.svg";
-import sir from "./sir.svg";
-import t from "./t.svg";
-import w from "./w.svg";
-import z from "./z.svg";
+import A from "./a.svg";
+import B from "./b.svg";
+import C from "./c.svg";
+import D from "./d.svg";
+import E from "./e.svg";
+import F from "./f.svg";
+import G from "./g.svg";
+import H from "./h.svg";
+import J from "./j.svg";
+import L from "./l.svg";
+import M from "./m.svg";
+import N from "./n.svg";
+import Q from "./q.svg";
+import R from "./r.svg";
+import S from "./s.svg";
+import SI from "./sir.svg";
+import T from "./t.svg";
+import W from "./w.svg";
+import Z from "./z.svg";
 
 export default {
     one,
@@ -37,23 +37,23 @@ export default {
     sixd,
     seven,
     sevend,
-    a,
-    b,
-    c,
-    d,
-    e,
-    f,
-    g,
-    h,
-    j,
-    l,
-    m,
-    n,
-    q,
-    r,
-    s,
-    sir,
-    t,
-    w,
-    z
+    A,
+    B,
+    C,
+    D,
+    E,
+    F,
+    G,
+    H,
+    J,
+    L,
+    M,
+    N,
+    Q,
+    R,
+    S,
+    SI,
+    T,
+    W,
+    Z
 };

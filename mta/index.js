@@ -2,9 +2,9 @@ const WebSocket = require("ws");
 const MTA = require("mta-gtfs");
 
 class Client {
-    constructor(ip, stop, socket) {
+    constructor(ip, station, socket) {
         this.ip = ip;
-        this.stop = stop;
+        this.station = station;
         this.socket = socket;
     }
 }
@@ -21,30 +21,90 @@ module.exports = class MTAServer {
         this.clients = {};
     }
 
-    start() {
-        this.wss.on("connection", (socket, req) => {
-            const ip = req.connection.remoteAddress;
-            console.log(`New connection: ${ip}`);
-            
-            this.clients[ip] = new Client(ip, "M13", socket);
+    getClientStations() {
+        return Object.values(this.clients).map(client => client.station);
+    }
 
-            socket.on("message", (msg) => {
-                console.log(`received: ${msg}`);
-                this.clients[ip].stop = msg;
+    async buildStations() {
+        const res = await this.mta.stop();
+
+        this.stations = Object.values(res)
+            .filter(stop => stop.parent_station === "") //Only keep parent station
+            .map(stop => {
+                const trainStop = {
+                    stationId: stop.stop_id,
+                    stationName: stop.stop_name
+                }
+                
+                return trainStop;
             });
-        });
+    }
 
+    startPolling() {
         this.poll = setInterval(async () => {
-            const res = await this.mta.schedule("M13", 21);
-            //console.log(res.schedule["M13"])
+            const clientStations = this.getClientStations();
+            const res = await this.mta.schedule(clientStations);
 
             Object.values(this.clients)
-                .filter(client => client.stop === "M13")
+                .filter(client => client.station !== null)
                 .forEach(client => {
-                    client.socket.send(JSON.stringify(res));
+                    const resp = { type: "update", schedule: res.schedule[client.station] };
+                    if(client.socket.readyState === WebSocket.OPEN)
+                        client.socket.send(JSON.stringify(resp));
+                    else
+                    {
+                        client.socket.terminate();
+                        if(this.wss.clients.size === 0)
+                            this.stopPolling();
+                        
+                        delete this.clients[client.ip];
+                    }
                 });
 
         }, 5000);
+    }
+
+    stopPolling() { 
+        console.log("No clients. Stopping polling.");
+        clearInterval(this.poll);
+    }
+
+    async start() {
+        this.wss.on("connection", (socket, req) => {
+            const ip = req.connection.remoteAddress;
+            console.log(`New connection: ${ip}`);
+
+            //Send over the list of stations
+            if(socket.readyState === WebSocket.OPEN)
+                socket.send(JSON.stringify({ type: "stations", stations: this.stations }));
+
+            this.clients[ip] = new Client(ip, null, socket);
+
+            socket.isAlive = true;
+            socket.on("pong", heartbeat);
+            socket.on("message", (msg) => {
+                if(msg.length <= 5)
+                {
+                    console.log(`Added station: ${msg}`);
+                    this.clients[ip].station = msg;
+                }
+            });
+
+            this.startPolling();
+        });
+
+        await this.buildStations();
+
+
+        //test
+
+        const res = await this.mta.stop();
+        console.log(res);
+        //console.log(Object.values(res).filter(stop => stop.stop_name.includes("Herald")))
+
+        const res2 = await this.mta.schedule(["D17", "M13"]);
+        console.log(res2)
+        console.log(res2.schedule["D17"]["N"])
 
         //console.log(Object.values(res).filter(stop => stop.stop_name.includes("Lorimer")))
         //console.log(Object.values(res))

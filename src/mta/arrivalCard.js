@@ -7,7 +7,8 @@ class Card extends Component {
     }
 
     renderImg() {
-        return <img className="cardImg" src={icons.m} alt="Card"/>;
+        console.log(this.props.item.routeId);
+        return <img className="cardImg" src={icons[this.props.item.routeId]} alt="Card"/>;
     }
     render() {
         return (

@@ -3,15 +3,15 @@ import moment from "moment";
 import ArrivalCard from "./arrivalCard";
 //import "./Home.css";
 
-moment.relativeTimeThreshold('ss', 60);
-moment.updateLocale('en', {
+moment.relativeTimeThreshold("ss", 60);
+moment.updateLocale("en", {
   relativeTime : {
     s: function (number, withoutSuffix, key, isFuture){
-      return number + ' seconds';
+      return number + " seconds";
     }
   }
 });
-const URL = "ws://localhost:8085";
+const URL = `ws://${window.location.hostname}:8085`;
 
 class MTA extends Component {
     constructor() {
@@ -31,7 +31,7 @@ class MTA extends Component {
             const minutes = duration.minutes() > 0 ? duration.minutes() + "m" : "";
             const seconds = duration.seconds() + "s";
 
-            if(seconds < 0)
+            if(duration.seconds() < 0)
                 return "Arriving now!";
 
             return `${minutes} ${seconds}`;
@@ -39,6 +39,7 @@ class MTA extends Component {
         const now = moment();
         return schedule.slice(0,4).map(route => {
             return {
+                routeId: route.routeId,
                 delay: route.delay,
                 arrivesIn: diff(now, moment.unix(route.arrivalTime)),
                 departsIn: diff(now, moment.unix(route.departureTime))
@@ -49,17 +50,26 @@ class MTA extends Component {
     componentDidMount() {
         this.ws.onopen = () => {
             console.log("ws connected");
+            this.ws.send("D17");
         }
     
         this.ws.onmessage = evt => {
             const msg = JSON.parse(evt.data)
-            const northbound = this.processSchedule(msg.schedule["M13"]["N"]);
-            const southbound = this.processSchedule(msg.schedule["M13"]["S"]);
 
-            this.setState({
-                northbound,
-                southbound
-            });
+            if(msg.type === "stations")
+            {
+                console.log(msg);
+            }
+            else if(msg.type === "update")
+            {
+                const northbound = this.processSchedule(msg.schedule["N"]);
+                const southbound = this.processSchedule(msg.schedule["S"]);
+
+                this.setState({
+                    northbound,
+                    southbound
+                });
+            }
         }
     }
 

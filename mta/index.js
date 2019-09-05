@@ -19,10 +19,14 @@ module.exports = class MTAServer {
 
         this.wss = new WebSocket.Server({ port: this.port });
         this.clients = {};
+
+        this.isPolling = false;
     }
 
     getClientStations() {
-        return Object.values(this.clients).map(client => client.station);
+        return Object.values(this.clients)
+                    .map(client => client.station)
+                    .filter(station => station !== null);
     }
 
     async buildStations() {
@@ -32,18 +36,61 @@ module.exports = class MTAServer {
             .filter(stop => stop.parent_station === "") //Only keep parent station
             .map(stop => {
                 const trainStop = {
-                    stationId: stop.stop_id,
-                    stationName: stop.stop_name
+                    id: stop.stop_id,
+                    label: `${stop.stop_name} (${stop.stop_id})`
                 }
                 
                 return trainStop;
             });
     }
 
+    //For some reason, some stations require querying a specific feed while others don't
+    //So query every single feed to be sure
+    async queryFeeds(stations) {
+        stations.push("D17")
+        const feeds = [ 1, 26, 16, 21, 2, 11, 31, 36, 51 ];
+        const getSchedule = async (stationIds, feedId) => {
+            return new Promise(async resolve => {
+                try {
+                    const res = await this.mta.schedule(stationIds, feedId);
+                    resolve(res);
+                }
+                catch(e) {
+                    resolve({});
+                }
+            });
+        }
+
+        const schedulePs = feeds.map(id => getSchedule(stations, id));
+        const schedules = (await Promise.all(schedulePs))
+                            .filter(res => res["schedule"] !== undefined)
+                            .reduce((acc, cur) => {
+                                Object.keys(acc.schedule).forEach(key => {
+                                    const north = cur.schedule[key]["N"];
+                                    const south = cur.schedule[key]["S"];
+
+                                    if(north.length > 0)
+                                        acc.schedule[key]["N"] = north;
+                                    if(south.length > 0)
+                                        acc.schedule[key]["S"] = south;
+                                });
+
+                                return acc;
+                            });
+
+        return schedules;
+    }
+
     startPolling() {
+        this.isPolling = true;
         this.poll = setInterval(async () => {
             const clientStations = this.getClientStations();
-            const res = await this.mta.schedule(clientStations);
+            if(clientStations.length == 0)
+                return;
+
+            console.log(`Clients: ${this.wss.clients.size}, Stations: ${clientStations.length}`)
+
+            const res = await this.queryFeeds(clientStations);
 
             Object.values(this.clients)
                 .filter(client => client.station !== null)
@@ -67,6 +114,7 @@ module.exports = class MTAServer {
     stopPolling() { 
         console.log("No clients. Stopping polling.");
         clearInterval(this.poll);
+        this.isPolling = false;
     }
 
     async start() {
@@ -75,13 +123,13 @@ module.exports = class MTAServer {
             console.log(`New connection: ${ip}`);
 
             //Send over the list of stations
-            if(socket.readyState === WebSocket.OPEN)
+            if(socket.readyState === WebSocket.OPEN) {
                 socket.send(JSON.stringify({ type: "stations", stations: this.stations }));
+                console.log("sent ;)")
+            }
 
             this.clients[ip] = new Client(ip, null, socket);
 
-            socket.isAlive = true;
-            socket.on("pong", heartbeat);
             socket.on("message", (msg) => {
                 if(msg.length <= 5)
                 {
@@ -90,7 +138,8 @@ module.exports = class MTAServer {
                 }
             });
 
-            this.startPolling();
+            if(!this.isPolling)
+                this.startPolling();
         });
 
         await this.buildStations();
@@ -99,12 +148,12 @@ module.exports = class MTAServer {
         //test
 
         const res = await this.mta.stop();
-        console.log(res);
-        //console.log(Object.values(res).filter(stop => stop.stop_name.includes("Herald")))
+        //console.log(res);
+        //console.log(Object.values(res).filter(stop => stop.stop_name.includes("Greenpoint")))
 
-        const res2 = await this.mta.schedule(["D17", "M13"]);
-        console.log(res2)
-        console.log(res2.schedule["D17"]["N"])
+        const res2 = await this.mta.schedule(["624"], 1);//await this.mta.schedule(["D17", "M13", "G36"], 31);
+        //console.log(res2)
+        console.log(res2.schedule["624"]["N"])
 
         //console.log(Object.values(res).filter(stop => stop.stop_name.includes("Lorimer")))
         //console.log(Object.values(res))

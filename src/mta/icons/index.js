@@ -6,7 +6,6 @@ import five from "./5.svg";
 import six from "./6.svg";
 import sixd from "./6d.svg";
 import seven from "./7.svg";
-import sevend from "./7d.svg";
 import A from "./a.svg";
 import B from "./b.svg";
 import C from "./c.svg";
@@ -36,7 +35,6 @@ export default {
     six,
     sixd,
     seven,
-    sevend,
     A,
     B,
     C,

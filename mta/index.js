@@ -1,14 +1,6 @@
 const WebSocket = require("ws");
 const MTA = require("mta-gtfs");
 
-class Client {
-    constructor(ip, station, socket) {
-        this.ip = ip;
-        this.station = station;
-        this.socket = socket;
-    }
-}
-
 module.exports = class MTAServer {
     constructor(apiKey) {
         this.port = 8085;
@@ -18,15 +10,18 @@ module.exports = class MTAServer {
           });
 
         this.wss = new WebSocket.Server({ port: this.port });
-        this.clients = {};
 
         this.isPolling = false;
     }
 
-    getClientStations() {
-        return Object.values(this.clients)
+    getClients() {
+        return [ ...this.wss.clients ];
+    }
+
+    getClientStations(clients) {
+        return clients
                     .map(client => client.station)
-                    .filter(station => station !== null);
+                    .filter(station => station !== undefined);
     }
 
     async buildStations() {
@@ -81,34 +76,27 @@ module.exports = class MTAServer {
         return schedules;
     }
 
+    async fetchArrivals(clients) {
+        const clientStations = this.getClientStations(clients);
+        if(clients.length == 0 || clientStations.length == 0)
+            return this.stopPolling();
+
+        console.log(`Clients: ${clients.length}, Stations: ${clientStations.length}`)
+
+        const res = await this.queryFeeds(clientStations);
+
+        clients
+            .filter(client => client.station !== undefined)
+            .forEach(client => {
+                const resp = { type: "update", schedule: res.schedule[client.station] };
+                if(client.readyState === WebSocket.OPEN)
+                    client.send(JSON.stringify(resp));
+            });
+    }
+
     startPolling() {
         this.isPolling = true;
-        this.poll = setInterval(async () => {
-            const clientStations = this.getClientStations();
-            if(clientStations.length == 0)
-                return;
-
-            console.log(`Clients: ${this.wss.clients.size}, Stations: ${clientStations.length}`)
-
-            const res = await this.queryFeeds(clientStations);
-
-            Object.values(this.clients)
-                .filter(client => client.station !== null)
-                .forEach(client => {
-                    const resp = { type: "update", schedule: res.schedule[client.station] };
-                    if(client.socket.readyState === WebSocket.OPEN)
-                        client.socket.send(JSON.stringify(resp));
-                    else
-                    {
-                        client.socket.terminate();
-                        if(this.wss.clients.size === 0)
-                            this.stopPolling();
-                        
-                        delete this.clients[client.ip];
-                    }
-                });
-
-        }, 5000);
+        this.poll = setInterval(() => this.fetchArrivals(this.getClients()), 5000);
     }
 
     stopPolling() { 
@@ -125,16 +113,18 @@ module.exports = class MTAServer {
             //Send over the list of stations
             if(socket.readyState === WebSocket.OPEN) {
                 socket.send(JSON.stringify({ type: "stations", stations: this.stations }));
-                console.log("sent ;)")
             }
-
-            this.clients[ip] = new Client(ip, null, socket);
 
             socket.on("message", (msg) => {
                 if(msg.length <= 5)
                 {
                     console.log(`Added station: ${msg}`);
-                    this.clients[ip].station = msg;
+                    socket.station = msg;
+
+                    this.fetchArrivals([ socket ]);
+
+                    if(!this.isPolling)
+                        this.startPolling();
                 }
             });
 
@@ -143,19 +133,5 @@ module.exports = class MTAServer {
         });
 
         await this.buildStations();
-
-
-        //test
-
-        const res = await this.mta.stop();
-        //console.log(res);
-        //console.log(Object.values(res).filter(stop => stop.stop_name.includes("Greenpoint")))
-
-        const res2 = await this.mta.schedule(["624"], 1);//await this.mta.schedule(["D17", "M13", "G36"], 31);
-        //console.log(res2)
-        console.log(res2.schedule["624"]["N"])
-
-        //console.log(Object.values(res).filter(stop => stop.stop_name.includes("Lorimer")))
-        //console.log(Object.values(res))
     }
 }

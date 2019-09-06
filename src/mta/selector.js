@@ -9,6 +9,10 @@ class Selector extends Component {
             items: []
         }
     }
+
+    selectAll(event) {
+        event.target.select();
+    }
   
     render() {
         return (
@@ -16,6 +20,7 @@ class Selector extends Component {
                 items = {this.state.items}
                 getItemValue = {item => item.label}
                 shouldItemRender={(item, value) => item.label.toLowerCase().indexOf(value.toLowerCase()) > -1}
+                renderInput = { (props) => <input { ...props } onFocus={this.selectAll} /> }
                 renderItem = {(item, highlighted) =>
                     <div
                         key={item.id}

@@ -23,32 +23,14 @@ class MTA extends Component {
         this.ws.onopen = () => {
             console.log("ws connected");
         }
-    
-        this.ws.onmessage = evt => {
-            const msg = JSON.parse(evt.data)
-
-            if(msg.type === "stations")
-            {
-                this.stations = msg.stations.sort((a, b) => a.label.toLowerCase().localeCompare(b.label.toLowerCase()));
-
-                const selector = this.selectorRef.current;
-                selector.setState({ items: this.stations });
-            }
-            else if(msg.type === "update")
-            {
-                const northbound = this.processSchedule(msg.schedule["N"]);
-                const southbound = this.processSchedule(msg.schedule["S"]);
-
-                this.setState({
-                    northbound,
-                    southbound
-                });
-            }
-        }
 
         this.selectorRef = React.createRef();
         this.submitBtnRef = React.createRef();
         this.historyRef = React.createRef();
+
+        this.updateStation = this.updateStation.bind(this);
+
+        this.queried = false;
     }
 
     processSchedule(schedule) {
@@ -73,41 +55,84 @@ class MTA extends Component {
         });
     }
 
+    query() {
+        this.queried = true;
+        const value = this.selectorRef.current.state.value;
+        if(value.length < 5)
+            return;
+
+        const stationId = value.match(/\(([^)]+)\)/)[1];
+        this.ws.send(stationId);
+        
+        this.historyRef.current.push(value);
+    }
+
     componentDidMount() {
-        this.submitBtnRef.current.addEventListener("click", () => {
-            const value = this.selectorRef.current.state.value;
-            if(value.length < 5)
-                return;
+        this.ws.onmessage = evt => {
+            const msg = JSON.parse(evt.data)
 
-            const stationId = value.match(/\(([^)]+)\)/)[1];
-            this.ws.send(stationId);
-            
-            //this.historyRef.current.push(value);
-        });
+            if(msg.type === "stations")
+            {
+                this.stations = msg.stations.sort((a, b) => a.label.toLowerCase().localeCompare(b.label.toLowerCase()));
 
-        //this.selectorRef.current.value = "103 St - Corona Plaza (706)";
+                const selector = this.selectorRef.current;
+                selector.setState({ items: this.stations });
+            }
+            else if(msg.type === "update")
+            {
+                const northbound = this.processSchedule(msg.schedule["N"]);
+                const southbound = this.processSchedule(msg.schedule["S"]);
+
+                this.setState({
+                    northbound,
+                    southbound
+                });
+            }
+        }
+
+        this.submitBtnRef.current.addEventListener("click", () => this.query());
+    }
+
+    updateStation(station) {
+        this.selectorRef.current.setState({ value: station }, () => this.query());
     }
 
     createCardComponents(schedule) {
         return schedule.map((arrival, idx) => <ArrivalCard key={idx} item={arrival} />);
     }
-//<br />
-//<History ref={this.historyRef}/>
+
+    renderQuery() {
+        if(!this.queried)
+            return (
+                <div id="schedule">
+                    <h2>Nothing here yet</h2>
+                    Select a station and click submit
+                </div>
+            );
+
+        return (
+            <div id="schedule">
+                <br />
+                <div className="direction">Northbound</div>
+                { this.createCardComponents(this.state.northbound) }
+                <br />
+                <div className="direction">Southbound</div>
+                { this.createCardComponents(this.state.southbound) }
+            </div>
+        );
+    }
+
     render() {
         return (
             <div id="container">
                 <div id="selector">
-                    <Selector ref={this.selectorRef}/>
-                    <input type="button" ref={this.submitBtnRef} value="SUBMIT" id="submitBtn"/>
+                    <div>
+                        <Selector ref={this.selectorRef}/>
+                        <input type="button" ref={this.submitBtnRef} value="SUBMIT" id="submitBtn"/>
+                    </div>
+                    <History ref={this.historyRef} onClick={this.updateStation}/>
                 </div>
-                <div id="schedule">
-                    <br />
-                    <div className="direction">Northbound</div>
-                    { this.createCardComponents(this.state.northbound) }
-                    <br />
-                    <div className="direction">Southbound</div>
-                    { this.createCardComponents(this.state.southbound) }
-                </div>
+                { this.renderQuery() }
             </div>
           );
     }

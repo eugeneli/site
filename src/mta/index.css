@@ -8,6 +8,7 @@
     width: 100%;
     background-color: #fff;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     padding: 20px;
@@ -97,4 +98,13 @@ input[type=button]:hover {
     #schedule .card {
        font-size: 65pt;
     }
+}
+
+#historyContainer {
+    margin-top: 5px;
+}
+
+.history {
+    padding: 5px !important;
+    margin: 0 3px 0px 3px;
 }

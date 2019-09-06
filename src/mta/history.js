@@ -11,12 +11,19 @@ class History extends Component {
             Cookies.set("history", "[]");
         
         this.state = {
-            history: JSON.parse(Cookies.get("history"))
+            history: this.getHistory()
         }
     }
 
+    getHistory() {
+        return JSON.parse(Cookies.get("history"))
+    }
+
     push(station) {
-        let history = JSON.parse(Cookies.get("history"));
+        let history = this.getHistory();
+        if(history.includes(station))
+            return;
+
         history.unshift(station);
         
         if(history.length > MAX)
@@ -29,10 +36,10 @@ class History extends Component {
 
     render() {
         return (
-            <div id="history">
+            <div id="historyContainer">
                 {
-                    this.state.history.map(station => 
-                        <input type="button" value={station} />
+                    this.state.history.map((station, idx) => 
+                        <input key={idx} className="history" type="button" value={station} onClick={() => this.props.onClick(station)}/>
                     )
                 }           
             </div>

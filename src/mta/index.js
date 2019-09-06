@@ -63,7 +63,7 @@ class MTA extends Component {
             return `${minutes} ${seconds}`;
         };
         const now = moment();
-        return schedule.slice(0,8).map(route => {
+        return schedule.sort((a,b) => a.arrivalTime - b.arrivalTime).slice(0,8).map(route => {
             return {
                 routeId: route.routeId,
                 delay: route.delay,

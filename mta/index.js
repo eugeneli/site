@@ -70,9 +70,9 @@ module.exports = class MTAServer {
                                     const south = cur.schedule[key]["S"];
 
                                     if(north.length > 0)
-                                        acc.schedule[key]["N"] = north;
+                                        acc.schedule[key]["N"] = acc.schedule[key]["N"].concat(north);
                                     if(south.length > 0)
-                                        acc.schedule[key]["S"] = south;
+                                        acc.schedule[key]["S"] = acc.schedule[key]["S"].concat(south);
                                 });
 
                                 return acc;

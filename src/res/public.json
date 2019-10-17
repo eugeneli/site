@@ -1,5 +1,14 @@
 [
     {
+        "img": "../../img/mta.jpg",
+        "title": "MTA Train Arrival Timer",
+        "desc": "I didn't like using the MTA's Android app it and didn't have live updates so I made my own train arrival timer like the ones you see at the stations. Updates every 5 seconds and remembers your stations.",
+        "link": {
+            "url": "http://itseugene.li/mta",
+            "type": "generic"
+        }
+    },
+    {
         "img": "../../img/tbw.png",
         "title": "ARK True Block Weight",
         "desc": "My delegate partner and I introduced and implemented the first True Block Weight (TBW) payout system in ARK. The main purpose of TBW is to defend against pool hoppers and is now considered standard practice for delegates. You can read the whitepaper <a href='https://www.scribd.com/document/416211820/True-Block-Weight'>here</a>.",

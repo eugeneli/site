@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import Cookies from "cookies-js";
 
 const MAX = 3;
 
@@ -7,8 +6,8 @@ class History extends Component {
     constructor(props) {
         super(props);
 
-        if(!Cookies.get("history"))
-            Cookies.set("history", "[]");
+        if(!JSON.parse(window.localStorage.getItem("history")))
+            window.localStorage.setItem("history", "[]");
         
         this.state = {
             history: this.getHistory()
@@ -16,7 +15,7 @@ class History extends Component {
     }
 
     getHistory() {
-        return JSON.parse(Cookies.get("history"))
+        return JSON.parse(window.localStorage.getItem("history"));
     }
 
     push(station) {
@@ -29,7 +28,7 @@ class History extends Component {
         if(history.length > MAX)
             history = history.slice(0, MAX);
 
-        Cookies.set("history", JSON.stringify(history));
+        window.localStorage.setItem("history", JSON.stringify(history));
 
         this.setState({ history });
     }

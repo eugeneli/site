@@ -9,7 +9,7 @@
     "install": "^0.13.0",
     "moment": "^2.24.0",
     "mta-gtfs": "^1.1.0",
-    "npm": "^6.10.0",
+    "npm": "^6.14.6",
     "public-ip": "^3.1.0",
     "react": "^16.8.6",
     "react-autocomplete": "^1.8.1",
